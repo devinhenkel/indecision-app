@@ -6,16 +6,32 @@ import Header from './Header';
 import Action from './Action';
 
 export default class IndecisionApp extends React.Component {
-    constructor(props){
-      super(props);
-      this.state = {
-        options: props.options
-      }
-      this.deleteAllOptions = this.deleteAllOptions.bind(this);
-      this.deleteOneOption = this.deleteOneOption.bind(this);
-      this.addOption = this.addOption.bind(this);
-      this.pickOption = this.pickOption.bind(this);
-    }
+  state = {
+    options: []
+  }
+  
+  addOption = (optionText) => {
+    if(!optionText) {
+      return 'Please enter a valid option.';
+    } else if (this.state.options.indexOf(optionText) > -1) {
+      return 'Option already exists.';
+    } 
+    this.setState((prevState) => ( { options: prevState.options.concat([optionText]) } ));
+    console.log(optionText);
+    
+  };
+  deleteAllOptions = () => {
+    this.setState(() => ( { options: [] } ));
+  };
+  deleteOneOption = (optionIndex) => {
+    const newOptions = this.state.options;
+    newOptions.splice(optionIndex, 1);
+    this.setState((prevState) => ( { options: [].concat(newOptions) } ));
+  };
+  pickOption = () => {
+    let pick = Math.floor(Math.random() * this.state.options.length);
+    alert(this.state.options[pick])
+  };
     componentDidMount(){
       try {
         const json = localStorage.getItem('options');
@@ -37,28 +53,7 @@ export default class IndecisionApp extends React.Component {
       //}
       //console.log(prevState);
     }
-    addOption(optionText) {
-      if(!optionText) {
-        return 'Please enter a valid option.';
-      } else if (this.state.options.indexOf(optionText) > -1) {
-        return 'Option already exists.';
-      } 
-      this.setState((prevState) => ( { options: prevState.options.concat([optionText]) } ));
-      console.log(optionText);
-      
-    }
-    deleteAllOptions(){
-      this.setState(() => ( { options: [] } ));
-    }
-    deleteOneOption(optionIndex) {
-      const newOptions = this.state.options;
-      newOptions.splice(optionIndex, 1);
-      this.setState((prevState) => ( { options: [].concat(newOptions) } ));
-    }
-    pickOption(){
-      let pick = Math.floor(Math.random() * this.state.options.length);
-      alert(this.state.options[pick])
-    }
+    
     render() {
       const subtitle = "Knock, knock. Who's there? FART!";
       return (
@@ -83,7 +78,7 @@ export default class IndecisionApp extends React.Component {
   }
 
   const userInfo = {
-    name: "Stinky Weaselteats",
+    name: "Chunky Muffins",
     age: 114
   };
   

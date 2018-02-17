@@ -1,14 +1,11 @@
 import React from 'react';
 
 export default class AddOption extends React.Component {
-    constructor(props) {
-      super(props);
-      this.submitOption = this.submitOption.bind(this);
-      this.state = {
-        error: undefined
-      }
-    }
-    submitOption(e) {
+  state = {
+    error: undefined
+  }
+  
+    submitOption = (e) => {
       e.preventDefault();
       let option = e.target.elements.option.value.trim();
       const error = this.props.addOption(option);
