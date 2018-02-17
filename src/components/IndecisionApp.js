@@ -81,3 +81,38 @@ export default class IndecisionApp extends React.Component {
       );
     }
   }
+
+  const userInfo = {
+    name: "Stinky Weaselteats",
+    age: 114
+  };
+  
+  IndecisionApp.defaultProps = {
+    options: []
+  };
+  
+  const jsx = (
+    <div>
+      <IndecisionApp />
+    </div>
+  );
+  
+  const User = (props) => {
+    return (
+      <div>
+        <p>Name: {props.userinfo.name}</p>
+        <p>Age: {props.userinfo.age}</p>
+      </div>
+    )
+  }
+
+  //binding example
+  const obj = {
+    name: "Farty Marty",
+    getName(){
+      return this.name;
+    }
+  }
+  
+  const getName = obj.getName.bind(obj);
+  //end example
