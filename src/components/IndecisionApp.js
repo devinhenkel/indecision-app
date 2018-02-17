@@ -4,10 +4,12 @@ import AddOption from './AddOption';
 import Options from './Options';
 import Header from './Header';
 import Action from './Action';
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   }
   
   addOption = (optionText) => {
@@ -20,6 +22,9 @@ export default class IndecisionApp extends React.Component {
     console.log(optionText);
     
   };
+  clearSelected = () => {
+    this.setState(() => ( { selectedOption: undefined } ));
+  };
   deleteAllOptions = () => {
     this.setState(() => ( { options: [] } ));
   };
@@ -30,7 +35,8 @@ export default class IndecisionApp extends React.Component {
   };
   pickOption = () => {
     let pick = Math.floor(Math.random() * this.state.options.length);
-    alert(this.state.options[pick])
+    //alert(this.state.options[pick])
+    this.setState((prevState) => ( { selectedOption: this.state.options[pick] } ));
   };
     componentDidMount(){
       try {
@@ -55,11 +61,10 @@ export default class IndecisionApp extends React.Component {
     }
     
     render() {
-      const subtitle = "Knock, knock. Who's there? FART!";
+      const subtitle = "Delegate your destiny...";
       return (
         <div>
-          <Header title="What up?" subtitle={subtitle}/>
-          <User userinfo={userInfo} />
+          <Header title="Indecision App" subtitle={subtitle}/>
           <Action 
             hasOptions={this.state.options.length>0}
             pickOption = {this.pickOption}
@@ -71,6 +76,11 @@ export default class IndecisionApp extends React.Component {
           />
           <AddOption 
             addOption = {this.addOption}
+          />
+          <User userinfo={userInfo} />
+          <OptionModal
+            selectedOption = {this.state.selectedOption}
+            clearSelected = {this.clearSelected}
           />
         </div>
       );
