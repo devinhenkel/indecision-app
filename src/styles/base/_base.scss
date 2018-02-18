@@ -3,11 +3,20 @@ html {
 }
 
 body {
+    background: $dark-blue;
     font-family: $font-stack;
     color: $text-color;
     font-size: $text-size-medium;
     padding: 0;
     margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
 }
 
 
