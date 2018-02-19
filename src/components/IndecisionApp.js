@@ -13,7 +13,8 @@ export default class IndecisionApp extends React.Component {
   }
   
   addOption = (optionText) => {
-    if(!optionText) {
+    console.log(optionText.length === 0);
+    if(optionText.length === 0) {
       return 'Please enter a valid option.';
     } else if (this.state.options.indexOf(optionText) > -1) {
       return 'Option already exists.';
@@ -70,15 +71,18 @@ export default class IndecisionApp extends React.Component {
               hasOptions={this.state.options.length>0}
               pickOption = {this.pickOption}
             />
-            <Options 
-              options = {this.state.options}
-              deleteAllOptions = {this.deleteAllOptions}
-              deleteOneOption = {this.deleteOneOption}
-            />
-            <AddOption 
-              addOption = {this.addOption}
-            />
-            <User userinfo={userInfo} />
+            <div className="widget">
+              <Options 
+                options = {this.state.options}
+                deleteAllOptions = {this.deleteAllOptions}
+                deleteOneOption = {this.deleteOneOption}
+              />
+              <AddOption 
+                addOption = {this.addOption}
+              />
+              
+            </div>
+            
           </div>
           <OptionModal
             selectedOption = {this.state.selectedOption}

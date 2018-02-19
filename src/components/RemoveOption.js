@@ -17,7 +17,7 @@ export default class RemoveOption extends React.Component {
         onClick={this.handleRemoveOption}
         className="button button--link"
        >
-        Remove
+        remove
        </button>
      )
    }

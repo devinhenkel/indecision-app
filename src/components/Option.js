@@ -11,13 +11,14 @@ export default class Option extends React.Component {
     render() {
       return (
         <div>
-          <p>Option: {this.props.option} 
-          
-        <RemoveOption 
-          index={this.props.index} 
-          deleteOneOption={this.props.deleteOneOption} 
-        />
-          </p>
+          <div className="option">
+            <p className="option__text">{this.props.count}: {this.props.option}</p>
+            
+            <RemoveOption 
+              index={this.props.index} 
+              deleteOneOption={this.props.deleteOneOption} 
+            />
+          </div>
         </div>
       )
     }
